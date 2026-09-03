@@ -1,0 +1,398 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  PTSU Landing Page:
+    Properties:
+      Fill: =RGBA(216, 226, 232, 1)
+      LoadingSpinnerColor: =RGBA(68, 57, 38, 1)
+    Children:
+      - Grid1:
+          Control: GroupContainer@1.5.0
+          Variant: GridLayout
+          Properties:
+            Fill: =RGBA(245, 245, 245, 1)
+            Height: =Parent.Height
+            LayoutGap: =16
+            LayoutGridColumns: =10
+            LayoutGridRows: =8
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Width: =Parent.Width
+          Children:
+            - landing_HeaderContainer:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =RGBA(255, 255, 255, 1)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGridColumnEnd: =-1
+                  LayoutGridColumnStart: =1
+                  LayoutGridRowEnd: =1
+                  LayoutGridRowStart: =1
+                  PaddingBottom: =8
+                  PaddingLeft: =100
+                  PaddingRight: =8
+                  PaddingTop: =8
+                  X: =40
+                  Y: =40
+                Children:
+                  - ptsu_record_label:
+                      Control: FluentV8/Label@1.8.6
+                      Properties:
+                        FontSize: =14
+                        FontWeight: ="bold"
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =32
+                        Text: |-
+                          ="P#: " & varSelectedParticipant.'p#' & ";
+                          MCPID:  " & varSelectedParticipant.MCPID & "; 
+                          Offender Name: " & varSelectedParticipant.Title
+                        Width: =800
+                  - Button3:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        Color: =RGBA(255, 255, 255, 1)
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        OnSelect: =Navigate('Pre-Trial Queue', ScreenTransition.Fade)
+                        Text: ="Back to PT Queue"
+                        Width: =150
+            - SidebarContainer1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =RGBA(255, 255, 255, 1)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGridColumnEnd: =4
+                  LayoutGridColumnStart: =1
+                  LayoutGridRowEnd: =-1
+                  LayoutGridRowStart: =2
+                  PaddingBottom: =8
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  PaddingTop: =8
+                  X: =40
+                  Y: =40
+                Children:
+                  - ptra_responses_label:
+                      Control: FluentV8/Label@1.8.6
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Start
+                        FontSize: =11
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Text: ="Pretrial Release Assessments"
+                        Width: =200
+                  - Button2:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AlignInContainer: =AlignInContainer.End
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        VerticalAlign: =VerticalAlign.Middle
+                        X: =40
+                        Y: =40
+                  - Participant PTRA responses:
+                      Control: Gallery@2.15.0
+                      Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_pcfCore
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderThickness: =1
+                        Items: |-
+                          =SortByColumns(
+                          Filter(RiskForm51_Template_FINAL_bp, 'pnum' = varSelectedParticipant.'p#'),
+                          "Created", 
+                          SortOrder.Descending
+                          )
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        TabIndex: =0
+                      Children:
+                        - Rectangle2:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(119, 77, 3, 1)
+                              DisabledFill: =RGBA(0,0,0,0)
+                              Fill: =RGBA(0,0,0,0)
+                              Height: =Parent.TemplateHeight
+                              HoverFill: =RGBA(0,0,0,0)
+                              OnSelect: =Select(Parent)
+                              PressedFill: =RGBA(0,0,0,0)
+                              TabIndex: =0
+                              Width: =Parent.TemplateWidth
+                        - Image2:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(119, 77, 3, 1)
+                              Height: =28
+                              OnSelect: =Select(Parent)
+                              Width: =28
+                              X: =12
+                              Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        - Subtitle2:
+                            Control: FluentV8/Label@1.8.6
+                            Properties:
+                              FontSize: =9
+                              FontWeight: =FontWeight.Normal
+                              Height: =24
+                              OnSelect: =Select(Parent)
+                              TabIndex: =-1
+                              Text: =ThisItem.date
+                              VerticalAlignment: =VerticalAlign.Top
+                              Width: =84
+                              X: =Title2.X
+                              Y: =24
+                        - Title2:
+                            Control: FluentV8/Label@1.8.6
+                            Properties:
+                              FontWeight: =FontWeight.Semibold
+                              Height: =24
+                              OnSelect: =Select(Parent)
+                              TabIndex: =-1
+                              Text: =ThisItem.ID
+                              VerticalAlignment: =VerticalAlign.Top
+                              Width: =30
+                              X: =Image2.X + Image2.Width + 12
+                              Y: =((Parent.TemplateHeight - 36) / 2) - 4
+                        - Title2_1:
+                            Control: FluentV8/Label@1.8.6
+                            Properties:
+                              FontWeight: =FontWeight.Semibold
+                              Height: =22
+                              OnSelect: =Select(Parent)
+                              TabIndex: =-1
+                              Text: =ThisItem.Created
+                              VerticalAlignment: =VerticalAlign.Top
+                              Width: =270
+                              X: =95
+                              Y: =((Parent.TemplateHeight - 36) / 2) - 4
+                  - ptsup_response_label:
+                      Control: FluentV8/Label@1.8.6
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Start
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Text: ="Pretrial Supervision Assessments"
+                  - Button2_1:
+                      Control: ModernButton@1.0.0
+                      Properties:
+                        AlignInContainer: =AlignInContainer.End
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        VerticalAlign: =VerticalAlign.Middle
+                        X: =40
+                        Y: =40
+                  - Participant Supervision responses:
+                      Control: Gallery@2.15.0
+                      Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_pcfCore
+                      Properties:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderThickness: =1
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        TabIndex: =0
+                      Children:
+                        - Rectangle3:
+                            Control: Rectangle@2.3.0
+                            Properties:
+                              BorderColor: =RGBA(119, 77, 3, 1)
+                              DisabledFill: =RGBA(0,0,0,0)
+                              Fill: =RGBA(0,0,0,0)
+                              Height: =Parent.TemplateHeight
+                              HoverFill: =RGBA(0,0,0,0)
+                              OnSelect: =Select(Parent)
+                              PressedFill: =RGBA(0,0,0,0)
+                              TabIndex: =0
+                              Width: =Parent.TemplateWidth
+                        - Image3:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(119, 77, 3, 1)
+                              Height: =28
+                              OnSelect: =Select(Parent)
+                              Width: =28
+                              X: =12
+                              Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        - Title3:
+                            Control: FluentV8/Label@1.8.6
+                            Properties:
+                              FontWeight: =FontWeight.Semibold
+                              Height: =24
+                              OnSelect: =Select(Parent)
+                              TabIndex: =-1
+                              Text: =ThisItem.SampleHeading
+                              VerticalAlignment: =VerticalAlign.Top
+                              Width: =Parent.TemplateWidth - Self.X - 8
+                              X: =Image3.X + Image3.Width + 12
+                              Y: =((Parent.TemplateHeight - 36) / 2) - 4
+                        - Subtitle3:
+                            Control: FluentV8/Label@1.8.6
+                            Properties:
+                              FontSize: =9
+                              FontWeight: =FontWeight.Normal
+                              Height: =24
+                              OnSelect: =Select(Parent)
+                              TabIndex: =-1
+                              Text: =ThisItem.SampleText
+                              VerticalAlignment: =VerticalAlign.Top
+                              Width: =Title3.Width
+                              X: =Title3.X
+                              Y: =Title3.Y + Title3.Height - 6
+            - MainContainer1:
+                Control: GroupContainer@1.5.0
+                Variant: AutoLayout
+                Properties:
+                  Fill: =RGBA(255, 255, 255, 1)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGridColumnEnd: =-1
+                  LayoutGridColumnStart: =4
+                  LayoutGridRowEnd: =-1
+                  LayoutGridRowStart: =2
+                  PaddingBottom: =8
+                  PaddingLeft: =8
+                  PaddingRight: =8
+                  PaddingTop: =8
+                  X: =40
+                  Y: =40
+                Children:
+                  - DataGrid2:
+                      Control: ModernDataGrid@1.5.0
+                      Properties:
+                        DisplayMode: =DisplayMode.View
+                        Items: |-
+                          =Filter(
+                                      RiskForm51_Template_FINAL_bp,
+                                      MCPID = varSelectedParticipant.MCPID
+                                  )
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Searchable: =true
+                      Children:
+                        - Offense Date_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Offense Date"
+                              FieldName: ="OffenseDate"
+                              FieldVariantName: ="textualColumn"
+                              Text: =ThisItem.'Offense Date'
+                        - Screener Name_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Screener Name"
+                              FieldName: ="ScreenerName"
+                              FieldVariantName: ="textualColumn"
+                              Text: =ThisItem.'Screener Name'
+                        - Screener_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Screener"
+                              FieldName: ="Screener"
+                              FieldVariantName: ="textualColumn"
+                              Text: =ThisItem.Screener
+                        - Offender Name_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Offender Name"
+                              FieldName: ="OffenderName"
+                              FieldVariantName: ="textualColumn"
+                              Text: =ThisItem.'Offender Name'
+                        - Supervisor Review Date:_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Supervisor Review Date:"
+                              FieldName: ="SupervisorReviewDate_x003a_"
+                              FieldVariantName: ="textualColumn"
+                              Text: =ThisItem.'Supervisor Review Date:'
+                        - Supervisor Name:_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Supervisor Name:"
+                              FieldName: ="SupervisorName_x003a_"
+                              FieldVariantName: ="textualColumn"
+                              Text: =ThisItem.'Supervisor Name:'
+                        - date_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="date"
+                              FieldName: ="date"
+                              FieldVariantName: ="textualColumn"
+                              Text: =ThisItem.date
+                        - supervisor_final_decision_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Number
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="supervisor_final_decision"
+                              FieldName: ="field_45"
+                              FieldVariantName: ="numberColumn"
+                              Value: =ThisItem.supervisor_final_decision
+                        - supervisor_review_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Number
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="supervisor_review"
+                              FieldName: ="field_44"
+                              FieldVariantName: ="numberColumn"
+                              Value: =ThisItem.supervisor_review
+                        - Scored Decision_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Number
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Scored Decision"
+                              FieldName: ="field_21"
+                              FieldVariantName: ="numberColumn"
+                              Value: =ThisItem.'Scored Decision'
+                        - pnum_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Number
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="pnum"
+                              FieldName: ="field_3"
+                              FieldVariantName: ="numberColumn"
+                              Value: =ThisItem.pnum
+                        - MCPID_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="MCPID"
+                              FieldName: ="field_2"
+                              FieldVariantName: ="textualColumn"
+                              Text: =ThisItem.MCPID
+                        - Title_Column1:
+                            Control: ModernDataGridColumn@1.2.0
+                            Variant: Textual
+                            IsLocked: true
+                            Properties:
+                              FieldDisplayName: ="Title"
+                              FieldName: ="Title"
+                              FieldVariantName: ="textualColumn"
+                              Text: =ThisItem.Title

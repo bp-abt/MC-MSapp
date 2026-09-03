@@ -1,0 +1,135 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Pre-Trial Queue:
+    Properties:
+      Fill: =RGBA(216, 226, 232, 1)
+      LoadingSpinnerColor: =RGBA(68, 57, 38, 1)
+    Children:
+      - RectQuickActionBar1:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(119, 77, 3, 1)
+            Fill: =RGBA(68, 57, 38, 1)
+            Height: =64
+            Width: =Parent.Width
+      - TemplateGalleryList1:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Vertical_ThreeTextOneImageVariant_pcfCore
+          Properties:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height - Self.Y
+            Items: =Background_dummyfile
+            OnSelect: |-
+              =Set(varSelectedParticipant, ThisItem);
+              Navigate('PTSU Landing Page', ScreenTransition.Fade)
+            TabIndex: =0
+            Width: =Parent.Width
+            Y: =64
+          Children:
+            - Rectangle4:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 1)
+                  BorderThickness: =1
+                  DisabledFill: =RGBA(0,0,0,0)
+                  Fill: =RGBA(0,0,0,0)
+                  Height: =Parent.TemplateHeight
+                  HoverFill: =RGBA(0,0,0,0)
+                  OnSelect: =Select(Parent)
+                  PressedFill: =RGBA(0,0,0,0)
+                  TabIndex: =0
+                  Width: =Parent.TemplateWidth
+            - Image4:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(119, 77, 3, 1)
+                  Height: =28
+                  OnSelect: =Select(Parent)
+                  Width: =28
+                  X: =12
+                  Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            - mcpid:
+                Control: FluentV8/Label@1.8.6
+                Properties:
+                  FontWeight: =FontWeight.Semibold
+                  Height: =24
+                  OnSelect: =Select(Parent)
+                  TabIndex: =-1
+                  Text: =ThisItem.MCPID
+                  VerticalAlignment: =VerticalAlign.Top
+                  Width: =Parent.TemplateWidth - Self.X - 8
+                  X: =Image4.X + Image4.Width + 12
+                  Y: =Image4.Y - 9
+            - off_name:
+                Control: FluentV8/Label@1.8.6
+                Properties:
+                  FontSize: =9
+                  FontWeight: =FontWeight.Normal
+                  Height: =24
+                  OnSelect: =Select(Parent)
+                  TabIndex: =-1
+                  Text: =ThisItem.Title
+                  VerticalAlignment: =VerticalAlign.Top
+                  Width: =212
+                  X: =mcpid.X
+                  Y: =mcpid.Y + mcpid.Height - 6
+            - dob:
+                Control: FluentV8/Label@1.8.6
+                Properties:
+                  FontSize: =9
+                  FontWeight: =FontWeight.Normal
+                  Height: =24
+                  OnSelect: =Select(Parent)
+                  TabIndex: =-1
+                  Text: =ThisItem.DOB
+                  VerticalAlignment: =VerticalAlign.Top
+                  Width: =1069
+                  X: =297
+                  Y: =mcpid.Y + mcpid.Height - 6
+            - ptsu_date:
+                Control: FluentV8/Label@1.8.6
+                Properties:
+                  FontSize: =9
+                  FontWeight: =FontWeight.Normal
+                  Height: =24
+                  OnSelect: =Select(Parent)
+                  TabIndex: =-1
+                  Text: =ThisItem.date_on_ptsu
+                  VerticalAlignment: =VerticalAlign.Top
+                  Width: =125
+                  X: =12
+                  Y: =Image4.Y + Image4.Height + 10
+            - P_num:
+                Control: FluentV8/Label@1.8.6
+                Properties:
+                  FontSize: =9
+                  FontWeight: =FontWeight.Normal
+                  Height: =24
+                  OnSelect: =Select(Parent)
+                  TabIndex: =-1
+                  Text: =ThisItem.'p#'
+                  VerticalAlignment: =VerticalAlign.Top
+                  Width: =1217
+                  X: =149
+                  Y: =Image4.Y + Image4.Height + 10
+      - Title4:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans'
+            Height: =64
+            PaddingRight: =10
+            Size: =18
+            Text: ="Pre-Trial Participants"
+            Width: =Parent.Width
